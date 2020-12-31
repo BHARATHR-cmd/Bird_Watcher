@@ -33,9 +33,6 @@
                     <i class="material-icons">home</i> Home
                 </a>
 
-                <a class="navbar-item">
-                    <i class="material-icons">explore</i> Explore
-                </a>
 
                 <a href="{% url 'show-notifications' %}" class="navbar-item">
                     <i class="material-icons">notifications</i> Notifications {% if count_notifications %}
@@ -55,11 +52,12 @@
                     <i style="color: green;" class="material-icons">perm_media</i>
                     <strong>New Post</strong>
                 </a>
-
-                <a href="" class="navbar-item">
-                    <i style="color: green;" class="material-icons">photo_filter</i>
-                    <strong>New Story</strong>
-                </a>
+                <div class="search-container">
+                    <form method="GET" action="/search">
+                        <input type="search" placeholder="Search.." name="search" id="search">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
 
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">

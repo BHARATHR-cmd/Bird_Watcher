@@ -23,6 +23,7 @@
                 <a href="{% url 'follow' profile.user 1 %}" class="button is-success">Follow</a> {% endif %}
             </div>
             {% endif %}
+
         </div>
 
 
@@ -89,12 +90,23 @@
             <div class="column is-one-quarter">
                 <div class="box">
 
-
+                    {% if post.content.first.file.name|slice:"-3:" == 'jpg' or post_item.content.first.file.name|slice:"-3:" == 'png' %}
                     <figure class="image is-4by3">
                         <a href="{{ post.get_absolute_url }}">
-                            <img src="{{ post.image.url }}" alt="Placeholder image">
+                            <img src="{{ post.content.first.file.url }}" alt="Placeholder image">
                         </a>
                     </figure>
+                    {% else %}
+                    <a href="{{ post.get_absolute_url }}">
+                        <video width="640" controls="controls" preload="metadata">
+        <source src="{{ post.content.first.file.url }}#t=0.5" type="video/mp4">        
+      </video>
+                    </a>
+                    {% endif %}
+
+
+
+
                 </div>
             </div>
             {% empty %}

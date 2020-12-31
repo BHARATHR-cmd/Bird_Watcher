@@ -16,6 +16,13 @@ from django.core.paginator import Paginator
 
 from django.urls import resolve
 
+
+
+
+
+def home(request):
+   return render(request,'Home.html')
+
 # Create your views here.
 def UserProfile(request, username):
 	user = get_object_or_404(User, username=username)

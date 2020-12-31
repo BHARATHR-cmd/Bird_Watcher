@@ -17,7 +17,29 @@
     <div class="column is-one-quarter">
         <div class="box">
             <figure class="image is-256x256">
-                <a href="{{ post.get_absolute_url }}"><img src="{{ post.image.url }}" alt="Image"></a>
+                {% if post.content.first.file.name|slice:"-3:" == 'jpg' or post.content.first.file.name|slice:"-3:" == 'png' %}
+                <figure class="image is-5by3">
+                    <a href="{{ post.get_absolute_url }}">
+                        <img src="{{ post.content.first.file.url }}" alt="Placeholder image">
+                    </a>
+                </figure>
+                {% elif post.content.first.file.name|slice:"-3:" == 'mp3' or post.content.first.file.name|slice:"-3:" == 'WAV' %}
+                <figure class="image is-5by3">
+                    <a href="{{ post.get_absolute_url }}">
+                        <img src="{% static 'img/birdlogo.jpg' %}" alt="Placeholder image">
+                    </a>
+                </figure>
+                <audio width="1080" controls="controls" preload="metadata">
+        <source src="{{ post.content.first.file.url }}#t=0.5" type="audio/mp3">        
+      </video>
+                </a>
+                {% else %}
+                <a href="{{ post.get_absolute_url }}">
+                    <video width="1080" controls="controls" preload="metadata">
+        <source src="{{ post.content.first.file.url }}#t=0.5" type="video/mp4">        
+      </video>
+                </a>
+                {% endif %}
             </figure>
         </div>
     </div>

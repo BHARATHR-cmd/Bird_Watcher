@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import render, redirect, get_object_or_404
 from authentication.forms import SignupForm, ChangePasswordForm, EditProfileForm
 from django.contrib.auth.models import User
@@ -15,7 +16,7 @@ from django.urls import reverse
 from django.core.paginator import Paginator
 
 from django.urls import resolve
-
+from post.models import Tag
 
 
 
@@ -182,3 +183,12 @@ def follow(request, username, option):
 		return HttpResponseRedirect(reverse('profile', args=[username]))
 	except User.DoesNotExist:
 		return HttpResponseRedirect(reverse('profile', args=[username]))
+
+
+
+def search(request):
+    query = request.GET['query']
+    #posts = Tag.objects.all
+    posts = Tag.objects.filter(title__icontains=query)
+    params = {'posts': posts}	
+    return render(request,'search.html',params)

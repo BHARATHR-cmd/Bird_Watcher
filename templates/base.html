@@ -32,6 +32,9 @@
                 <a href="{% url 'index' %}" class="navbar-item">
                     <i class="material-icons">home</i> Home
                 </a>
+                <a href="/new" class="navbar-item">
+                    <i class="material-icons">new</i> Home
+                </a>
 
 
                 <a href="{% url 'show-notifications' %}" class="navbar-item">
@@ -39,13 +42,14 @@
                     <span class="badge">{{ count_notifications }}</span> {% endif %}
                 </a>
 
-                <a href="" class="navbar-item">
-                    <i class="material-icons">inbox</i> Inbox {% if directs_count %}
-                    <span class="badge">{{ directs_count }}</span> {% endif %}
-                </a>
+
 
                 <a href="{% url 'profile' request.user %}" class="navbar-item">
                     <i class="material-icons">face</i> Profile - <strong>{{ request.user }}</strong>
+                </a>
+                <a href="{% url 'inbox' %}" class="navbar-item">
+                    <i class="material-icons">inbox</i> Inbox {% if directs_count %}
+                    <span class="badge">{{ directs_count }}</span> {% endif %}
                 </a>
 
                 <a href="{% url 'newpost' %}" class="navbar-item">

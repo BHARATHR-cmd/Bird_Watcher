@@ -24,7 +24,7 @@
         <source src="{{ post_item.content.first.file.url }}#t=0.5" type="audio/mp3">        
       </video>
                 </a>
-                {% else %}
+                {% elif post_item.content.first.file.name|slice:"-3:" == 'mp4' or post_item.content.first.file.name|slice:"-3:" == 'mp4' %}
                 <a href="{{ post_item.get_absolute_url }}">
                     <video width="1080" controls="controls" preload="metadata">
         <source src="{{ post_item.content.first.file.url }}#t=0.5" type="video/mp4">        

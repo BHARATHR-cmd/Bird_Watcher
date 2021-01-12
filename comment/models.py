@@ -13,6 +13,8 @@ class Comment(models.Model):
 	body = models.TextField()
 	date = models.DateTimeField(auto_now_add=True)
 
+	class Meta:
+    		db_table = "Comment"
 	def user_comment_post(sender, instance, *args, **kwargs):
 		comment = instance
 		post = comment.post

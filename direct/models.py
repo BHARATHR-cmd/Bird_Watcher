@@ -11,6 +11,8 @@ class Message(models.Model):
 	date = models.DateTimeField(auto_now_add=True)
 	is_read = models.BooleanField(default=False)
 
+	class Meta:
+    		db_table = "message"
 	def send_message(from_user, to_user, body):
 		sender_message = Message(
 			user=from_user,

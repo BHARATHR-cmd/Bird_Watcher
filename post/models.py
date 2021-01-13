@@ -43,7 +43,7 @@ class PostFileContent(models.Model):
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     content =  models.ManyToManyField(PostFileContent, related_name='contents')
-    Url = models.TextField(max_length=1500, verbose_name='Caption')
+    caption = models.TextField(max_length=1500, verbose_name='Caption')
     posted = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag, related_name='tags')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -85,9 +85,6 @@ class Stream(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)   
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField()
-
-    class Meta:
-        		db_table = "stream"
 
     def add_post(sender, instance, *args, **kwargs):
         post = instance

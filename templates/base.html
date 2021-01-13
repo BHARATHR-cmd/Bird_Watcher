@@ -10,14 +10,26 @@
     <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .navbar-item {
+            padding-left: 15px;
+            padding-right: 15px;
+            color: white;
+        }
+        
+        .center {
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
-
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #212121; color: white;">
         <div class="navbar-brand">
             <a class="navbar-item" href="">
-                <img src="{% static 'img/instagram_black.png' %}" width="64" height="64">
+                <img src="{% static 'img/white-humming-bird.png' %}" width="64" height="64">
             </a>
 
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -27,13 +39,10 @@
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="navbarBasicExample" class="navbar-menu" style="color: white;">
             <div class="navbar-start">
                 <a href="{% url 'index' %}" class="navbar-item">
                     <i class="material-icons">home</i> Home
-                </a>
-                <a href="/new" class="navbar-item">
-                    <i class="material-icons">new</i> Home
                 </a>
 
 
@@ -42,24 +51,27 @@
                     <span class="badge">{{ count_notifications }}</span> {% endif %}
                 </a>
 
-
-
-                <a href="{% url 'profile' request.user %}" class="navbar-item">
-                    <i class="material-icons">face</i> Profile - <strong>{{ request.user }}</strong>
-                </a>
-                <a href="{% url 'inbox' %}" class="navbar-item">
+                <a href="" class="navbar-item">
                     <i class="material-icons">inbox</i> Inbox {% if directs_count %}
                     <span class="badge">{{ directs_count }}</span> {% endif %}
                 </a>
 
+                <a href="/new" class="navbar-item">
+                    <i class="material-icons">search</i> Other Users!
+                </a>
+
+                <a href="{% url 'profile' request.user %}" class="navbar-item">
+                    <i class="material-icons">face</i> <strong>{{ request.user }}</strong>
+                </a>
+
                 <a href="{% url 'newpost' %}" class="navbar-item">
-                    <i style="color: green;" class="material-icons">perm_media</i>
+                    <i class="material-icons">perm_media</i>
                     <strong>New Post</strong>
                 </a>
-                <div class="search-container">
+                <div class="search-container center">
                     <form method="GET" action="/search">
                         <input type="" placeholder="Search.." name="query" id="query">
-                        <button type="submit">Submit</button>
+                        <a class="button is-outlined is-danger is-rounded">Submit</a>
                     </form>
                 </div>
 
@@ -69,17 +81,17 @@
         </a>
 
                     <div class="navbar-dropdown">
-                        <a href="{% url 'change_password' %}" class="navbar-item">
+                        <a href="{% url 'change_password' %}" class="navbar-item" style="color: black;">
                         Change password
                         </a>
-                        <a class="navbar-item">
+                        <a class="navbar-item" style="color: black;">
             Contact
           </a>
-                        <a class="navbar-item">
+                        <a class="navbar-item" style="color: black;">
             Report an issue
           </a>
                         <hr class="navbar-divider">
-                        <a href="{% url 'logout' %}" class="navbar-item">
+                        <a href="{% url 'logout' %}" class="navbar-item" style="color: black;">
             Log out
           </a>
                     </div>

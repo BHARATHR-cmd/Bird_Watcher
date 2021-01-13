@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from PIL import Image
 import os
 from post.models import Post
-
 from django.db.models.signals import post_save
 from django.conf import settings
 

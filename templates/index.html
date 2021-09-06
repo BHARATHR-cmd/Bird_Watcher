@@ -19,10 +19,11 @@
                     <a href="{{ post_item.get_absolute_url }}">
                         <img src="{% static 'img/birdlogo.jpg' %}" alt="Placeholder image">
                     </a>
+                    <audio width="1080" controls="controls" preload="metadata">
+                        <source src="{{ post_item.content.first.file.url }}#t=0.5" type="audio/mp3">        
+                                </audio>
                 </figure>
-                <audio width="1080" controls="controls" preload="metadata">
-        <source src="{{ post_item.content.first.file.url }}#t=0.5" type="audio/mp3">        
-      </video>
+
                 </a>
                 {% elif post_item.content.first.file.name|slice:"-3:" == 'mp4' or post_item.content.first.file.name|slice:"-3:" == 'mp4' %}
                 <a href="{{ post_item.get_absolute_url }}">
@@ -55,7 +56,7 @@
 
                         <p class="subtitle is-6">@{{ post_item.user.username }}</p>
 
-                       
+
                         <p>{% for tag in post_item.tags.all %}<a href="{{ tag.get_absolute_url }}">#{{ tag }}</a>{% endfor %}</p>
                         <br>
                         <strong><small>{{ post_item.posted | naturaltime }}</small></strong>
@@ -73,7 +74,9 @@
 
             </div>
         </div>
-
+        {% empty %}
+        <br>
+        <h3 class="title is-3">You don't have Post Feed!</h3>
         <br> {% endfor %}
 
     </div>
